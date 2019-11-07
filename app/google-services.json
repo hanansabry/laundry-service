@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "112576744361",
+    "firebase_url": "https://lanudry-service-4e7b8.firebaseio.com",
+    "project_id": "lanudry-service-4e7b8",
+    "storage_bucket": "lanudry-service-4e7b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112576744361:android:dc163fa63d1d3c58d812b8",
+        "android_client_info": {
+          "package_name": "com.android.laundryservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112576744361-a8qh8e0hfumvsp6vjj8gk3nbrjgd45q1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.laundryservice",
+            "certificate_hash": "51247baa05eff6421afb67f99b356fa2ad164748"
+          }
+        },
+        {
+          "client_id": "112576744361-u29n7gj52rgt7obbkl89f21d6q5uqo1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCixmKxahSUahB1J97IMLLYh6pEN0aeYZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112576744361-u29n7gj52rgt7obbkl89f21d6q5uqo1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
