@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".services.HomeActivity"
+    tools:showIn="@layout/app_bar_home">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/service_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/service_recycler_view"
+        android:background="@color/lightGray" />
+
+    <TextView
+        android:id="@+id/total_cost_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccentTransparent"
+        android:padding="12dp"
+        android:text="Sub Total: 0 KWD"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:fontFamily="@font/didact_gothic"
+        android:textSize="18sp"/>
+
+
+</RelativeLayout>
