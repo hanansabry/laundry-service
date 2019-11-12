@@ -2,9 +2,13 @@ package com.android.laundryservice.data.invoice;
 
 import android.content.SharedPreferences;
 
+import com.android.laundryservice.model.InvoiceItem;
+import com.android.laundryservice.model.Service;
 import com.android.laundryservice.model.ServiceItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class InvoiceRepositoryImpl implements InvoiceRepository {
     private final SharedPreferences sharedPreferences;
@@ -66,5 +70,40 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
             total += serviceItem.getUnitPrice() * getServiceItemQuantity(serviceItem);
         }
         return total;
+    }
+
+    @Override
+    public ArrayList<InvoiceItem> getInvoiceItems() {
+        ArrayList<InvoiceItem> invoiceItems = new ArrayList<>();
+        HashMap<Service, ArrayList<ServiceItem>> serviceItemsMap = new HashMap<>();
+
+        for (ServiceItem serviceItem : InvoiceRepository.serviceItems) {
+            ArrayList<ServiceItem> serviceItems = new ArrayList<>();
+            if (!serviceItemsMap.containsKey(serviceItem.getService())) {
+                serviceItems = new ArrayList<>();
+                serviceItems.add(serviceItem);
+                serviceItemsMap.put(serviceItem.getService(), serviceItems);
+            } else {
+                serviceItems = serviceItemsMap.get(serviceItem.getService());
+                serviceItems.add(serviceItem);
+
+            }
+            serviceItemsMap.put(serviceItem.getService(), serviceItems);
+        }
+
+        for (Service service : serviceItemsMap.keySet()) {
+            ArrayList<ServiceItem> serviceItems = serviceItemsMap.get(service);
+            InvoiceItem invoiceItem = new InvoiceItem();
+            invoiceItem.setService(service);
+            invoiceItem.setSummary(String.format(Locale.US, "%d items selected", serviceItems.size()));
+
+            double itemTotalCost = 0;
+            for (ServiceItem serviceItem : serviceItems) {
+                itemTotalCost += getServiceItemTotalCost(serviceItem);
+            }
+            invoiceItem.setTotalCost(itemTotalCost);
+            invoiceItems.add(invoiceItem);
+        }
+        return invoiceItems;
     }
 }

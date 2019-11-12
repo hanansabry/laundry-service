@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.android.laundryservice.Injection;
 import com.android.laundryservice.R;
+import com.android.laundryservice.select_location.MapsActivity;
 
 public class SubSummaryActivity extends AppCompatActivity {
 
@@ -47,5 +49,9 @@ public class SubSummaryActivity extends AppCompatActivity {
 
     public void onAddMoreClicked(View view) {
         onBackPressed();
+    }
+
+    public void onSelectLocationClicked(View view) {
+        startActivity(new Intent(this, MapsActivity.class));
     }
 }

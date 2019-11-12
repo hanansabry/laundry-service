@@ -19,8 +19,8 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_below="@id/app_logo_img_view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"

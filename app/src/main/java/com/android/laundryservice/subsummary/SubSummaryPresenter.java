@@ -34,37 +34,8 @@ public class SubSummaryPresenter {
         return invoiceItems.size();
     }
 
-    public ArrayList<InvoiceItem> getInvoiceItems() {
-        HashMap<Service, ArrayList<ServiceItem>> serviceItemsMap = new HashMap<>();
-
-        for (ServiceItem serviceItem : InvoiceRepository.serviceItems) {
-            ArrayList<ServiceItem> serviceItems = new ArrayList<>();
-            if (!serviceItemsMap.containsKey(serviceItem.getService())) {
-                serviceItems = new ArrayList<>();
-                serviceItems.add(serviceItem);
-                serviceItemsMap.put(serviceItem.getService(), serviceItems);
-            } else {
-                serviceItems = serviceItemsMap.get(serviceItem.getService());
-                serviceItems.add(serviceItem);
-
-            }
-            serviceItemsMap.put(serviceItem.getService(), serviceItems);
-        }
-
-        for (Service service : serviceItemsMap.keySet()) {
-            ArrayList<ServiceItem> serviceItems = serviceItemsMap.get(service);
-            InvoiceItem invoiceItem = new InvoiceItem();
-            invoiceItem.setService(service);
-            invoiceItem.setSummary(String.format(Locale.US, "%d items selected", serviceItems.size()));
-
-            double itemTotalCost = 0;
-            for (ServiceItem serviceItem : serviceItems) {
-                itemTotalCost += invoiceRepository.getServiceItemTotalCost(serviceItem);
-            }
-            invoiceItem.setTotalCost(itemTotalCost);
-            invoiceItems.add(invoiceItem);
-        }
-        return invoiceItems;
+    public void getInvoiceItems() {
+        this.invoiceItems = invoiceRepository.getInvoiceItems();
     }
 
     public double getTotalCost() {

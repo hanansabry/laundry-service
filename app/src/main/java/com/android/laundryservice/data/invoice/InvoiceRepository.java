@@ -1,5 +1,6 @@
 package com.android.laundryservice.data.invoice;
 
+import com.android.laundryservice.model.InvoiceItem;
 import com.android.laundryservice.model.ServiceItem;
 
 import java.util.ArrayList;
@@ -21,4 +22,6 @@ public interface InvoiceRepository {
     int getServiceItemQuantity(ServiceItem serviceItem);
 
     double getServiceItemsTotalCost();
+
+    ArrayList<InvoiceItem> getInvoiceItems();
 }
