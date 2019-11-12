@@ -1,9 +1,5 @@
 package com.android.laundryservice.subsummary;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,9 +10,13 @@ import com.android.laundryservice.Injection;
 import com.android.laundryservice.R;
 import com.android.laundryservice.select_location.MapsActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class SubSummaryActivity extends AppCompatActivity {
 
-    private SubSummaryPresenter presenter;
+    private SummaryPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class SubSummaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sub_summary);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        presenter = new SubSummaryPresenter(Injection.provideInvoiceRepository(getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)));
+        presenter = new SummaryPresenter(Injection.provideInvoiceRepository(getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)));
         initializeInvoiceItemsRecyclerView();
 
         TextView totalCostTextView = findViewById(R.id.total_cost_textview);

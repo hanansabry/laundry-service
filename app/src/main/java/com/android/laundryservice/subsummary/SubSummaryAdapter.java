@@ -7,19 +7,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.laundryservice.R;
-import com.android.laundryservice.model.InvoiceItem;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SubSummaryAdapter extends RecyclerView.Adapter<SubSummaryAdapter.SubSummaryItemViewHolder> {
 
-    private final SubSummaryPresenter presenter;
+    private final SummaryPresenter presenter;
 
-    public SubSummaryAdapter(SubSummaryPresenter presenter) {
+    public SubSummaryAdapter(SummaryPresenter presenter) {
         this.presenter = presenter;
     }
 

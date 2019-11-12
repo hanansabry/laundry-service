@@ -79,16 +79,18 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
 
         for (ServiceItem serviceItem : InvoiceRepository.serviceItems) {
             ArrayList<ServiceItem> serviceItems = new ArrayList<>();
-            if (!serviceItemsMap.containsKey(serviceItem.getService())) {
+            Service service = getMapService(serviceItem.getService(), serviceItemsMap);
+            if (service == null) {
+                service = serviceItem.getService();
                 serviceItems = new ArrayList<>();
                 serviceItems.add(serviceItem);
-                serviceItemsMap.put(serviceItem.getService(), serviceItems);
             } else {
-                serviceItems = serviceItemsMap.get(serviceItem.getService());
-                serviceItems.add(serviceItem);
-
+                serviceItems = serviceItemsMap.get(service);
+                if (!isItemAddedBefore(serviceItem, serviceItems)) {
+                    serviceItems.add(serviceItem);
+                }
             }
-            serviceItemsMap.put(serviceItem.getService(), serviceItems);
+            serviceItemsMap.put(service, serviceItems);
         }
 
         for (Service service : serviceItemsMap.keySet()) {
@@ -105,5 +107,32 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
             invoiceItems.add(invoiceItem);
         }
         return invoiceItems;
+    }
+
+    private boolean isItemAddedBefore(ServiceItem serviceItem, ArrayList<ServiceItem> serviceItems) {
+        for (ServiceItem item : serviceItems) {
+            if (item.getId().equalsIgnoreCase(serviceItem.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Service getMapService(Service currentService, HashMap<Service, ArrayList<ServiceItem>> serviceItemsMap) {
+        for (Service service : serviceItemsMap.keySet()) {
+            if (service.getId().equalsIgnoreCase(currentService.getId())) {
+                return service;
+            }
+        }
+        return null;
+    }
+
+    private boolean isServiceAddedBefore(Service currentService, HashMap<Service, ArrayList<ServiceItem>> serviceArrayListMap) {
+        for (Service service : serviceArrayListMap.keySet()) {
+            if (service.getId().equalsIgnoreCase(currentService.getId())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

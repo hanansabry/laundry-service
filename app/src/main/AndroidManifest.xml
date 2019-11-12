@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".summary.PaymentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".summary.InvoiceSummary"
             android:label="Invoice Summary" />
         <!--

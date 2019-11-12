@@ -2,19 +2,15 @@ package com.android.laundryservice.subsummary;
 
 import com.android.laundryservice.data.invoice.InvoiceRepository;
 import com.android.laundryservice.model.InvoiceItem;
-import com.android.laundryservice.model.Service;
-import com.android.laundryservice.model.ServiceItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
 
-public class SubSummaryPresenter {
+public class SummaryPresenter {
 
     private ArrayList<InvoiceItem> invoiceItems = new ArrayList<>();
     private final InvoiceRepository invoiceRepository;
 
-    public SubSummaryPresenter(InvoiceRepository invoiceRepository) {
+    public SummaryPresenter(InvoiceRepository invoiceRepository) {
         this.invoiceRepository = invoiceRepository;
     }
 
