@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public interface InvoiceRepository {
 
+    ArrayList<ServiceItem> serviceItems = new ArrayList<>();
+
     void addNewServiceItem(ServiceItem serviceItem);
 
     void removeServiceItem(ServiceItem serviceItem);

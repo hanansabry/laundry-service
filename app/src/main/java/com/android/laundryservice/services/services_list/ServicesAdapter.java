@@ -1,7 +1,5 @@
 package com.android.laundryservice.services.services_list;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ServicesAdapter extends RecyclerView.Adapter {
+public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ServiceViewHolder> {
 
     private ServicesPresenter servicesPresenter;
     private int selectedPosition = 0;
@@ -33,14 +31,14 @@ public class ServicesAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ServiceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.service_item_layout, parent, false);
         return new ServiceViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ServiceViewHolder holder, int position) {
         holder.itemView.setSelected(selectedPosition == position);
         servicesPresenter.onBindServiceItemRowViewAtPosition((ServiceViewHolder) holder, position);
     }

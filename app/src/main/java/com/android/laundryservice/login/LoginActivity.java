@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.android.laundryservice.Injection;
-import com.android.laundryservice.MainActivity;
 import com.android.laundryservice.R;
 import com.android.laundryservice.data.authentication.AuthenticationRepository;
 import com.android.laundryservice.register.RegisterActivity;

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class InvoiceRepositoryImpl implements InvoiceRepository {
     private final SharedPreferences sharedPreferences;
-    private static final ArrayList<ServiceItem> serviceItems = new ArrayList<>();
 
     public InvoiceRepositoryImpl(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;

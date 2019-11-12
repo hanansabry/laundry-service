@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ServiceItemsAdapter extends RecyclerView.Adapter {
+public class ServiceItemsAdapter extends RecyclerView.Adapter<ServiceItemsAdapter.ServiceItemViewHolder> {
 
     private final ServiceItemsPresenter presenter;
 
@@ -31,15 +31,15 @@ public class ServiceItemsAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ServiceItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.service_item_row_layout, parent, false);
         return new ServiceItemViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        presenter.onBindServiceItemRowViewAtPosition((ServiceItemViewHolder) holder, position);
+    public void onBindViewHolder(@NonNull ServiceItemViewHolder holder, int position) {
+        presenter.onBindServiceItemRowViewAtPosition(holder, position);
     }
 
     @Override

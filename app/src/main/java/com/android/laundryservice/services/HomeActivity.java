@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.laundryservice.Injection;
-import com.android.laundryservice.MainActivity;
+import com.android.laundryservice.subsummary.SubSummaryActivity;
 import com.android.laundryservice.R;
 import com.android.laundryservice.data.services.ServicesRepository;
 import com.android.laundryservice.login.LoginActivity;
@@ -159,7 +159,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.done) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, SubSummaryActivity.class));
         }
         return true;
     }
