@@ -22,6 +22,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     public void GoToHomeScreen(View view) {
         Intent homeIntent = new Intent(this, HomeActivity.class);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(homeIntent);
     }
 }

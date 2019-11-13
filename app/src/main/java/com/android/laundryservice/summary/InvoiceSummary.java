@@ -2,6 +2,7 @@ package com.android.laundryservice.summary;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class InvoiceSummary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice_summary);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new SummaryPresenter(Injection.provideInvoiceRepository(getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)));
 
@@ -69,5 +71,13 @@ public class InvoiceSummary extends AppCompatActivity {
         Picasso.get()
                 .load(mapImageUrl)
                 .into(mapImage);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return true;
     }
 }
