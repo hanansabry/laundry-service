@@ -2,39 +2,36 @@ package com.android.laundryservice.services;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.laundryservice.Injection;
-import com.android.laundryservice.subsummary.SubSummaryActivity;
 import com.android.laundryservice.R;
 import com.android.laundryservice.data.services.ServicesRepository;
 import com.android.laundryservice.login.LoginActivity;
-
-import android.view.Menu;
-import android.view.View;
-
 import com.android.laundryservice.model.Service;
 import com.android.laundryservice.services.serviceItems.ServiceItemsFragment;
 import com.android.laundryservice.services.services_list.ServicesAdapter;
 import com.android.laundryservice.services.services_list.ServicesPresenter;
+import com.android.laundryservice.subsummary.SubSummaryActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+import java.util.ArrayList;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeContract.View {
@@ -43,6 +40,7 @@ public class HomeActivity extends AppCompatActivity
     private ServicesPresenter servicesPresenter;
     private FragmentManager fragmentManager;
     private TextView totalCostTextView;
+    private boolean isDoneEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,5 +164,17 @@ public class HomeActivity extends AppCompatActivity
 
     public void setServiceItemsTotalCost(double serviceItemsTotalCost) {
         totalCostTextView.setText(String.format(getString(R.string.total_cost_value), serviceItemsTotalCost));
+    }
+
+    public void enableDisableDoneButton(boolean enable) {
+        isDoneEnabled = enable;
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem doneMenuItem = menu.findItem(R.id.done);
+        doneMenuItem.setEnabled(isDoneEnabled);
+        return true;
     }
 }

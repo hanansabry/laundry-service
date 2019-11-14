@@ -1,10 +1,5 @@
 package com.android.laundryservice.select_location;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,7 +18,6 @@ import com.android.laundryservice.R;
 import com.android.laundryservice.data.laundries.LaundriesRepository;
 import com.android.laundryservice.data.regions.RegionRepository;
 import com.android.laundryservice.model.Laundry;
-import com.android.laundryservice.subsummary.SubSummaryActivity;
 import com.android.laundryservice.summary.InvoiceSummary;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,6 +29,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentActivity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, RegionRepository.RegionRepositoryCallback, LaundriesRepository.LaundriesRepositoryCallback, GoogleMap.OnMarkerClickListener {
 
@@ -104,10 +103,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onLaundriesRetrieved(ArrayList<Laundry> laundries) {
         this.laundries = laundries;
         if (laundries != null && laundries.size() > 0) {
+            LatLng latLng = null;
             for (Laundry laundry : laundries) {
-                mMap.addMarker(new MarkerOptions().position(laundry.getLocation()).title(laundry.getName()));
+                latLng = new LatLng(laundry.getLocation().getLatitude(), laundry.getLocation().getLongitude());
+                mMap.addMarker(new MarkerOptions().position(latLng).title(laundry.getName()));
             }
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(laundries.get(0).getLocation(), 15));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
         } else {
             Toast.makeText(this, "This region has no laundries available", Toast.LENGTH_SHORT).show();
         }

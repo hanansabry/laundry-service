@@ -45,6 +45,7 @@ public class ServiceItemsPresenter {
         holder.setItemQuantity(invoiceRepository.getServiceItemQuantity(serviceItem));
         setItemTotalCost(holder, serviceItem);
         updateTotalServiceItemsCost();
+        fragment.enableDisableDoneButton(InvoiceRepository.serviceItems.size() > 0);
     }
 
     public void decreaseQuantity(ServiceItemsAdapter.ServiceItemViewHolder holder, int itemPosition) {
@@ -53,6 +54,7 @@ public class ServiceItemsPresenter {
         holder.setItemQuantity(invoiceRepository.getServiceItemQuantity(serviceItem));
         setItemTotalCost(holder, serviceItem);
         updateTotalServiceItemsCost();
+        fragment.enableDisableDoneButton(InvoiceRepository.serviceItems.size() > 0);
     }
 
     public void setItemTotalCost(ServiceItemsAdapter.ServiceItemViewHolder holder, ServiceItem serviceItem) {

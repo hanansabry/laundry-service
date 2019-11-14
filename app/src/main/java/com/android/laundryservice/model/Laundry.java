@@ -1,6 +1,5 @@
 package com.android.laundryservice.model;
 
-import android.graphics.Region;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,7 +11,7 @@ public class Laundry implements Parcelable {
     private String name;
     private String phone;
     private String address;
-    private LatLng location;
+    private Location location;
     private String region;
 
     public Laundry() {
@@ -71,11 +70,11 @@ public class Laundry implements Parcelable {
         this.address = address;
     }
 
-    public LatLng getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(LatLng location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 

@@ -53,6 +53,9 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(serviceItem.getId(), --quantity);
             editor.apply();
+            if (quantity == 0) {
+                removeServiceItem(serviceItem);
+            }
         } else {
             removeServiceItem(serviceItem);
         }

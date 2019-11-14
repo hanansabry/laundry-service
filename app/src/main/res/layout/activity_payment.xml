@@ -34,7 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/order_summary_imageview"
         android:layout_centerHorizontal="true"
-        android:layout_margin="32dp"
         android:fontFamily="@font/didact_gothic"
         android:text="Your order is requested, Thanks!"
         android:gravity="center"

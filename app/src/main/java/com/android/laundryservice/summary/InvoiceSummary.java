@@ -65,7 +65,7 @@ public class InvoiceSummary extends AppCompatActivity {
 
     private void setLaundryLocationImage(Laundry laundry) {
         ImageView mapImage = findViewById(R.id.map_image);
-        LatLng location = laundry.getLocation();
+        LatLng location = new LatLng(laundry.getLocation().getLatitude(), laundry.getLocation().getLongitude());
         String mapImageUrl = "https://maps.googleapis.com/maps/api/staticmap?key=" + getString(R.string.google_api_key)
                 + "&size=360x180&path=" + location.latitude + "," + location.longitude + "&zoom=18";
         Picasso.get()
